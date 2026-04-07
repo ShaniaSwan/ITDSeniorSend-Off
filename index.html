@@ -26,7 +26,6 @@
       --border:rgba(0,0,0,.08);
       --shadow:0 18px 44px rgba(0,0,0,.05);
       --shadow-soft:0 8px 20px rgba(0,0,0,.04);
-      --radius:30px;
     }
 
     *{box-sizing:border-box}
@@ -266,64 +265,121 @@
       margin:0 0 16px 4px;
     }
 
-    .steps-grid{
+    .timeline{
       display:grid;
       grid-template-columns:repeat(5, minmax(0,1fr));
-      gap:14px;
+      gap:18px;
+      align-items:start;
       position:relative;
     }
 
-    .steps-grid::before{
-      content:"";
+    .timeline-line{
       position:absolute;
       left:8%;
       right:8%;
-      top:34px;
+      top:40px;
       height:2px;
-      background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));
-      opacity:.35;
+      background:
+        linear-gradient(90deg,
+          var(--c1) 0%,
+          var(--c2) 25%,
+          var(--c3) 50%,
+          var(--c4) 75%,
+          var(--c5) 100%);
+      opacity:.45;
       z-index:0;
     }
 
-    .step-card{
+    .timeline-card{
       position:relative;
       z-index:1;
-      border:1px solid var(--border);
-      border-radius:24px;
-      background:rgba(255,255,255,.9);
-      padding:18px 16px 16px;
       cursor:pointer;
       transition:.2s ease;
-      min-height:150px;
-      box-shadow:var(--shadow-soft);
     }
 
-    .step-card:hover{
+    .timeline-card:hover{
       transform:translateY(-3px);
     }
 
-    .step-card.active{
+    .timeline-top{
+      position:relative;
+      height:82px;
+      margin-bottom:8px;
+    }
+
+    .timeline-node{
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      border:4px solid #fff;
+      box-shadow:0 0 0 1px rgba(0,0,0,.08);
+      position:absolute;
+      top:30px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:3;
+      transition:.2s ease;
+    }
+
+    .timeline-card:nth-child(2) .timeline-node{background:var(--c1)}
+    .timeline-card:nth-child(3) .timeline-node{background:var(--c2)}
+    .timeline-card:nth-child(4) .timeline-node{background:var(--c3)}
+    .timeline-card:nth-child(5) .timeline-node{background:var(--c4)}
+    .timeline-card:nth-child(6) .timeline-node{background:var(--c5)}
+
+    .timeline-arrow{
+      position:absolute;
+      top:0;
+      left:50%;
+      width:88%;
+      height:72px;
+      transform:translateX(-50%);
+      overflow:visible;
+    }
+
+    .timeline-arrow path{
+      fill:none;
+      stroke-width:2.5;
+      stroke-dasharray:6 7;
+      stroke-linecap:round;
+      opacity:.8;
+    }
+
+    .timeline-arrow polygon{
+      opacity:.8;
+    }
+
+    .timeline-card:nth-child(2) .timeline-arrow path,
+    .timeline-card:nth-child(2) .timeline-arrow polygon{stroke:var(--c1); fill:var(--c1)}
+    .timeline-card:nth-child(3) .timeline-arrow path,
+    .timeline-card:nth-child(3) .timeline-arrow polygon{stroke:var(--c2); fill:var(--c2)}
+    .timeline-card:nth-child(4) .timeline-arrow path,
+    .timeline-card:nth-child(4) .timeline-arrow polygon{stroke:var(--c3); fill:var(--c3)}
+    .timeline-card:nth-child(5) .timeline-arrow path,
+    .timeline-card:nth-child(5) .timeline-arrow polygon{stroke:var(--c4); fill:var(--c4)}
+    .timeline-card:nth-child(6) .timeline-arrow path,
+    .timeline-card:nth-child(6) .timeline-arrow polygon{stroke:var(--c5); fill:var(--c5)}
+
+    .timeline-box{
+      border:1px solid var(--border);
+      border-radius:24px;
+      background:rgba(255,255,255,.92);
+      padding:18px 16px 16px;
+      min-height:156px;
+      box-shadow:var(--shadow-soft);
+      transition:.2s ease;
+    }
+
+    .timeline-card.active .timeline-box{
       background:#fff;
       box-shadow:0 14px 28px rgba(0,0,0,.08);
-      transform:translateY(-2px);
     }
 
-    .step-dot{
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      border:4px solid white;
-      box-shadow:0 0 0 1px rgba(0,0,0,.08);
-      margin:0 auto 18px;
+    .timeline-card.active .timeline-node{
+      transform:translateX(-50%) scale(1.12);
     }
 
-    .step-card:nth-child(1) .step-dot{background:var(--c1)}
-    .step-card:nth-child(2) .step-dot{background:var(--c2)}
-    .step-card:nth-child(3) .step-dot{background:var(--c3)}
-    .step-card:nth-child(4) .step-dot{background:var(--c4)}
-    .step-card:nth-child(5) .step-dot{background:var(--c5)}
-
-    .step-num{
+    .timeline-step{
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:.16em;
@@ -332,8 +388,8 @@
       margin-bottom:8px;
     }
 
-    .step-title{
-      font-size:1.25rem;
+    .timeline-title{
+      font-size:1.22rem;
       line-height:1.02;
       font-weight:900;
       letter-spacing:-.04em;
@@ -341,9 +397,9 @@
       margin-bottom:8px;
     }
 
-    .step-sub{
+    .timeline-sub{
       font-size:.92rem;
-      line-height:1.5;
+      line-height:1.55;
       color:#666;
       font-weight:600;
     }
@@ -380,26 +436,44 @@
     .panel::after{
       content:"";
       position:absolute;
-      right:28px;
-      top:50%;
-      width:156px;
-      height:156px;
-      transform:translateY(-50%);
-      border-radius:50%;
-      opacity:.12;
+      right:34px;
+      top:32px;
+      bottom:32px;
+      width:2px;
+      border-radius:999px;
+      opacity:.22;
       pointer-events:none;
-      transition:.22s ease;
     }
 
-    .welcome::after{border:15px solid var(--c1)}
-    .overview::after{border:15px solid var(--c2)}
-    .seniors::after{border:15px solid var(--c3)}
-    .next::after{border:15px solid var(--c4)}
-    .about::after{border:15px solid var(--c5)}
+    .panel::before{
+      content:"";
+      position:absolute;
+      right:24px;
+      top:50%;
+      width:22px;
+      height:22px;
+      transform:translateY(-50%);
+      border-radius:6px;
+      pointer-events:none;
+      opacity:.9;
+      box-shadow:0 0 0 8px rgba(255,255,255,.7);
+      z-index:0;
+    }
 
-    .panel.active-panel::after{
-      transform:translateY(-50%) scale(1.04);
-      opacity:.18;
+    .welcome::after{background:linear-gradient(180deg, transparent, var(--c1), transparent)}
+    .overview::after{background:linear-gradient(180deg, transparent, var(--c2), transparent)}
+    .seniors::after{background:linear-gradient(180deg, transparent, var(--c3), transparent)}
+    .next::after{background:linear-gradient(180deg, transparent, var(--c4), transparent)}
+    .about::after{background:linear-gradient(180deg, transparent, var(--c5), transparent)}
+
+    .welcome::before{background:var(--c1)}
+    .overview::before{background:var(--c2)}
+    .seniors::before{background:var(--c3)}
+    .next::before{background:var(--c4)}
+    .about::before{background:var(--c5)}
+
+    .panel.active-panel::before{
+      transform:translateY(-50%) scale(1.08);
     }
 
     .accent-bar{
@@ -567,10 +641,20 @@
     }
 
     @media (max-width: 1100px){
-      .steps-grid{
+      .timeline{
         grid-template-columns:1fr;
       }
-      .steps-grid::before{
+      .timeline-line{
+        display:none;
+      }
+      .timeline-top{
+        height:30px;
+        margin-bottom:10px;
+      }
+      .timeline-node{
+        top:0;
+      }
+      .timeline-arrow{
         display:none;
       }
     }
@@ -589,9 +673,12 @@
         padding-bottom:16px;
       }
       .panel::after{
-        right:-18px;
-        width:120px;
-        height:120px;
+        right:24px;
+        width:2px;
+        height:auto;
+      }
+      .panel::before{
+        right:14px;
       }
     }
 
@@ -644,40 +731,82 @@
     <section class="process-wrap reveal">
       <div class="process-shell">
         <p class="shell-label">Design process sequence</p>
-        <div class="steps-grid" id="stepGrid">
-          <div class="step-card active" data-target="welcome">
-            <div class="step-dot"></div>
-            <div class="step-num">Step 01</div>
-            <div class="step-title">Welcome</div>
-            <div class="step-sub">Opening the experience and setting the tone.</div>
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-card active" data-target="welcome">
+            <div class="timeline-top">
+              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
+                <path d="M8,54 C60,8 120,8 175,40"></path>
+                <polygon points="172,34 188,39 175,50"></polygon>
+              </svg>
+              <div class="timeline-node"></div>
+            </div>
+            <div class="timeline-box">
+              <div class="timeline-step">Step 01</div>
+              <div class="timeline-title">Welcome</div>
+              <div class="timeline-sub">Opening the experience and setting the tone.</div>
+            </div>
           </div>
 
-          <div class="step-card" data-target="overview">
-            <div class="step-dot"></div>
-            <div class="step-num">Step 02</div>
-            <div class="step-title">Overview</div>
-            <div class="step-sub">Guiding guests through the flow of the event.</div>
+          <div class="timeline-card" data-target="overview">
+            <div class="timeline-top">
+              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
+                <path d="M12,40 C64,72 126,72 182,26"></path>
+                <polygon points="178,20 192,26 180,37"></polygon>
+              </svg>
+              <div class="timeline-node"></div>
+            </div>
+            <div class="timeline-box">
+              <div class="timeline-step">Step 02</div>
+              <div class="timeline-title">Overview</div>
+              <div class="timeline-sub">Guiding guests through the flow of the event.</div>
+            </div>
           </div>
 
-          <div class="step-card" data-target="seniors">
-            <div class="step-dot"></div>
-            <div class="step-num">Step 03</div>
-            <div class="step-title">Seniors</div>
-            <div class="step-sub">Recognizing the graduating class and their impact.</div>
+          <div class="timeline-card" data-target="seniors">
+            <div class="timeline-top">
+              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
+                <path d="M8,54 C60,8 120,8 175,40"></path>
+                <polygon points="172,34 188,39 175,50"></polygon>
+              </svg>
+              <div class="timeline-node"></div>
+            </div>
+            <div class="timeline-box">
+              <div class="timeline-step">Step 03</div>
+              <div class="timeline-title">Seniors</div>
+              <div class="timeline-sub">Recognizing the graduating class and their impact.</div>
+            </div>
           </div>
 
-          <div class="step-card" data-target="next-event">
-            <div class="step-dot"></div>
-            <div class="step-num">Step 04</div>
-            <div class="step-title">Next Event</div>
-            <div class="step-sub">Connecting this moment to what comes next.</div>
+          <div class="timeline-card" data-target="next-event">
+            <div class="timeline-top">
+              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
+                <path d="M12,40 C64,72 126,72 182,26"></path>
+                <polygon points="178,20 192,26 180,37"></polygon>
+              </svg>
+              <div class="timeline-node"></div>
+            </div>
+            <div class="timeline-box">
+              <div class="timeline-step">Step 04</div>
+              <div class="timeline-title">Next Event</div>
+              <div class="timeline-sub">Connecting this moment to what comes next.</div>
+            </div>
           </div>
 
-          <div class="step-card" data-target="about-itd">
-            <div class="step-dot"></div>
-            <div class="step-num">Step 05</div>
-            <div class="step-title">About ITD</div>
-            <div class="step-sub">Framing the program behind the experience.</div>
+          <div class="timeline-card" data-target="about-itd">
+            <div class="timeline-top">
+              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
+                <path d="M8,54 C60,8 120,8 175,40"></path>
+                <polygon points="172,34 188,39 175,50"></polygon>
+              </svg>
+              <div class="timeline-node"></div>
+            </div>
+            <div class="timeline-box">
+              <div class="timeline-step">Step 05</div>
+              <div class="timeline-title">About ITD</div>
+              <div class="timeline-sub">Framing the program behind the experience.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -789,7 +918,7 @@
   </div>
 
   <script>
-    const stepCards = document.querySelectorAll('.step-card');
+    const stepCards = document.querySelectorAll('.timeline-card');
     const panels = document.querySelectorAll('.panel');
     const reveals = document.querySelectorAll('.reveal');
     const jumpLinks = document.querySelectorAll('#jumpNav a');
