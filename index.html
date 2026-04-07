@@ -248,10 +248,10 @@
     }
 
     .process-shell{
-      padding:26px 22px;
+      padding:26px 28px 30px;
       border:1px solid var(--border);
       border-radius:34px;
-      background:rgba(255,255,255,.70);
+      background:rgba(255,255,255,.72);
       backdrop-filter:blur(8px);
       box-shadow:var(--shadow);
     }
@@ -262,146 +262,97 @@
       letter-spacing:.16em;
       color:#777;
       font-weight:800;
-      margin:0 0 16px 4px;
+      margin:0 0 22px 0;
     }
 
-    .timeline{
+    .editorial-timeline{
+      position:relative;
       display:grid;
       grid-template-columns:repeat(5, minmax(0,1fr));
       gap:18px;
-      align-items:start;
-      position:relative;
+      padding-top:22px;
     }
 
-    .timeline-line{
+    .editorial-line{
       position:absolute;
-      left:8%;
-      right:8%;
-      top:40px;
-      height:2px;
-      background:
-        linear-gradient(90deg,
-          var(--c1) 0%,
-          var(--c2) 25%,
-          var(--c3) 50%,
-          var(--c4) 75%,
-          var(--c5) 100%);
-      opacity:.45;
-      z-index:0;
+      left:4%;
+      right:4%;
+      top:32px;
+      height:1.5px;
+      background:rgba(0,0,0,.12);
     }
 
-    .timeline-card{
+    .editorial-step{
       position:relative;
       z-index:1;
+      appearance:none;
+      border:none;
+      background:none;
+      padding:0;
+      text-align:left;
       cursor:pointer;
+      color:inherit;
+      font:inherit;
       transition:.2s ease;
     }
 
-    .timeline-card:hover{
-      transform:translateY(-3px);
+    .editorial-step:hover{
+      transform:translateY(-2px);
     }
 
-    .timeline-top{
-      position:relative;
-      height:82px;
-      margin-bottom:8px;
-    }
-
-    .timeline-node{
-      width:20px;
-      height:20px;
+    .editorial-marker{
+      width:18px;
+      height:18px;
       border-radius:50%;
-      border:4px solid #fff;
-      box-shadow:0 0 0 1px rgba(0,0,0,.08);
-      position:absolute;
-      top:30px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:3;
-      transition:.2s ease;
-    }
-
-    .timeline-card:nth-child(2) .timeline-node{background:var(--c1)}
-    .timeline-card:nth-child(3) .timeline-node{background:var(--c2)}
-    .timeline-card:nth-child(4) .timeline-node{background:var(--c3)}
-    .timeline-card:nth-child(5) .timeline-node{background:var(--c4)}
-    .timeline-card:nth-child(6) .timeline-node{background:var(--c5)}
-
-    .timeline-arrow{
-      position:absolute;
-      top:0;
-      left:50%;
-      width:88%;
-      height:72px;
-      transform:translateX(-50%);
-      overflow:visible;
-    }
-
-    .timeline-arrow path{
-      fill:none;
-      stroke-width:2.5;
-      stroke-dasharray:6 7;
-      stroke-linecap:round;
-      opacity:.8;
-    }
-
-    .timeline-arrow polygon{
-      opacity:.8;
-    }
-
-    .timeline-card:nth-child(2) .timeline-arrow path,
-    .timeline-card:nth-child(2) .timeline-arrow polygon{stroke:var(--c1); fill:var(--c1)}
-    .timeline-card:nth-child(3) .timeline-arrow path,
-    .timeline-card:nth-child(3) .timeline-arrow polygon{stroke:var(--c2); fill:var(--c2)}
-    .timeline-card:nth-child(4) .timeline-arrow path,
-    .timeline-card:nth-child(4) .timeline-arrow polygon{stroke:var(--c3); fill:var(--c3)}
-    .timeline-card:nth-child(5) .timeline-arrow path,
-    .timeline-card:nth-child(5) .timeline-arrow polygon{stroke:var(--c4); fill:var(--c4)}
-    .timeline-card:nth-child(6) .timeline-arrow path,
-    .timeline-card:nth-child(6) .timeline-arrow polygon{stroke:var(--c5); fill:var(--c5)}
-
-    .timeline-box{
-      border:1px solid var(--border);
-      border-radius:24px;
-      background:rgba(255,255,255,.92);
-      padding:18px 16px 16px;
-      min-height:156px;
-      box-shadow:var(--shadow-soft);
-      transition:.2s ease;
-    }
-
-    .timeline-card.active .timeline-box{
       background:#fff;
-      box-shadow:0 14px 28px rgba(0,0,0,.08);
+      border:2px solid rgba(0,0,0,.16);
+      margin:0 auto 22px;
+      transition:.2s ease;
     }
 
-    .timeline-card.active .timeline-node{
-      transform:translateX(-50%) scale(1.12);
-    }
+    .editorial-step:nth-child(2) .editorial-marker{ box-shadow:0 0 0 6px var(--c1); }
+    .editorial-step:nth-child(3) .editorial-marker{ box-shadow:0 0 0 6px var(--c2); }
+    .editorial-step:nth-child(4) .editorial-marker{ box-shadow:0 0 0 6px var(--c3); }
+    .editorial-step:nth-child(5) .editorial-marker{ box-shadow:0 0 0 6px var(--c4); }
+    .editorial-step:nth-child(6) .editorial-marker{ box-shadow:0 0 0 6px var(--c5); }
 
-    .timeline-step{
-      font-size:11px;
+    .editorial-step-num{
+      font-size:12px;
       text-transform:uppercase;
       letter-spacing:.16em;
-      color:#7a7a7a;
+      color:#8a8a8a;
       font-weight:800;
       margin-bottom:8px;
     }
 
-    .timeline-title{
-      font-size:1.22rem;
+    .editorial-step-title{
+      font-size:1.35rem;
       line-height:1.02;
       font-weight:900;
       letter-spacing:-.04em;
-      color:#202020;
+      color:#1f1f1f;
       margin-bottom:8px;
     }
 
-    .timeline-sub{
-      font-size:.92rem;
+    .editorial-step-sub{
+      font-size:.96rem;
       line-height:1.55;
       color:#666;
       font-weight:600;
+      max-width:190px;
+    }
+
+    .editorial-step:hover .editorial-marker{
+      transform:scale(1.08);
+    }
+
+    .editorial-step.active .editorial-marker{
+      transform:scale(1.15);
+      border-color:#111;
+    }
+
+    .editorial-step.active .editorial-step-title{
+      color:#111;
     }
 
     .sections{
@@ -641,21 +592,29 @@
     }
 
     @media (max-width: 1100px){
-      .timeline{
+      .editorial-timeline{
         grid-template-columns:1fr;
+        gap:20px;
+        padding-top:0;
       }
-      .timeline-line{
+
+      .editorial-line{
         display:none;
       }
-      .timeline-top{
-        height:30px;
-        margin-bottom:10px;
+
+      .editorial-step{
+        padding-left:34px;
       }
-      .timeline-node{
-        top:0;
+
+      .editorial-marker{
+        position:absolute;
+        left:0;
+        top:4px;
+        margin:0;
       }
-      .timeline-arrow{
-        display:none;
+
+      .editorial-step-sub{
+        max-width:none;
       }
     }
 
@@ -731,83 +690,44 @@
     <section class="process-wrap reveal">
       <div class="process-shell">
         <p class="shell-label">Design process sequence</p>
-        <div class="timeline">
-          <div class="timeline-line"></div>
 
-          <div class="timeline-card active" data-target="welcome">
-            <div class="timeline-top">
-              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
-                <path d="M8,54 C60,8 120,8 175,40"></path>
-                <polygon points="172,34 188,39 175,50"></polygon>
-              </svg>
-              <div class="timeline-node"></div>
-            </div>
-            <div class="timeline-box">
-              <div class="timeline-step">Step 01</div>
-              <div class="timeline-title">Welcome</div>
-              <div class="timeline-sub">Opening the experience and setting the tone.</div>
-            </div>
-          </div>
+        <div class="editorial-timeline" id="stepGrid">
+          <div class="editorial-line"></div>
 
-          <div class="timeline-card" data-target="overview">
-            <div class="timeline-top">
-              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
-                <path d="M12,40 C64,72 126,72 182,26"></path>
-                <polygon points="178,20 192,26 180,37"></polygon>
-              </svg>
-              <div class="timeline-node"></div>
-            </div>
-            <div class="timeline-box">
-              <div class="timeline-step">Step 02</div>
-              <div class="timeline-title">Overview</div>
-              <div class="timeline-sub">Guiding guests through the flow of the event.</div>
-            </div>
-          </div>
+          <button class="editorial-step active" data-target="welcome" type="button">
+            <div class="editorial-marker"></div>
+            <div class="editorial-step-num">01</div>
+            <div class="editorial-step-title">Welcome</div>
+            <div class="editorial-step-sub">Opening the experience</div>
+          </button>
 
-          <div class="timeline-card" data-target="seniors">
-            <div class="timeline-top">
-              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
-                <path d="M8,54 C60,8 120,8 175,40"></path>
-                <polygon points="172,34 188,39 175,50"></polygon>
-              </svg>
-              <div class="timeline-node"></div>
-            </div>
-            <div class="timeline-box">
-              <div class="timeline-step">Step 03</div>
-              <div class="timeline-title">Seniors</div>
-              <div class="timeline-sub">Recognizing the graduating class and their impact.</div>
-            </div>
-          </div>
+          <button class="editorial-step" data-target="overview" type="button">
+            <div class="editorial-marker"></div>
+            <div class="editorial-step-num">02</div>
+            <div class="editorial-step-title">Overview</div>
+            <div class="editorial-step-sub">Flow of the event</div>
+          </button>
 
-          <div class="timeline-card" data-target="next-event">
-            <div class="timeline-top">
-              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
-                <path d="M12,40 C64,72 126,72 182,26"></path>
-                <polygon points="178,20 192,26 180,37"></polygon>
-              </svg>
-              <div class="timeline-node"></div>
-            </div>
-            <div class="timeline-box">
-              <div class="timeline-step">Step 04</div>
-              <div class="timeline-title">Next Event</div>
-              <div class="timeline-sub">Connecting this moment to what comes next.</div>
-            </div>
-          </div>
+          <button class="editorial-step" data-target="seniors" type="button">
+            <div class="editorial-marker"></div>
+            <div class="editorial-step-num">03</div>
+            <div class="editorial-step-title">Seniors</div>
+            <div class="editorial-step-sub">Recognition + impact</div>
+          </button>
 
-          <div class="timeline-card" data-target="about-itd">
-            <div class="timeline-top">
-              <svg class="timeline-arrow" viewBox="0 0 200 80" aria-hidden="true">
-                <path d="M8,54 C60,8 120,8 175,40"></path>
-                <polygon points="172,34 188,39 175,50"></polygon>
-              </svg>
-              <div class="timeline-node"></div>
-            </div>
-            <div class="timeline-box">
-              <div class="timeline-step">Step 05</div>
-              <div class="timeline-title">About ITD</div>
-              <div class="timeline-sub">Framing the program behind the experience.</div>
-            </div>
-          </div>
+          <button class="editorial-step" data-target="next-event" type="button">
+            <div class="editorial-marker"></div>
+            <div class="editorial-step-num">04</div>
+            <div class="editorial-step-title">Next Event</div>
+            <div class="editorial-step-sub">What comes next</div>
+          </button>
+
+          <button class="editorial-step" data-target="about-itd" type="button">
+            <div class="editorial-marker"></div>
+            <div class="editorial-step-num">05</div>
+            <div class="editorial-step-title">About ITD</div>
+            <div class="editorial-step-sub">Program context</div>
+          </button>
         </div>
       </div>
     </section>
@@ -918,7 +838,7 @@
   </div>
 
   <script>
-    const stepCards = document.querySelectorAll('.timeline-card');
+    const stepCards = document.querySelectorAll('.editorial-step');
     const panels = document.querySelectorAll('.panel');
     const reveals = document.querySelectorAll('.reveal');
     const jumpLinks = document.querySelectorAll('#jumpNav a');
