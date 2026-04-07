@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(black, #222);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  padding: 40px;
+}
+
+.hidden {
+  display: none;
+}
