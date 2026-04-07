@@ -8,14 +8,12 @@
     :root{
       --bg:#f7f7f4;
       --bg2:#f2f1ed;
-      --paper:#fcfcfa;
       --ink:#171717;
       --text:#4e4e4e;
       --muted:#7a7a7a;
 
       --grid-major:rgba(0,0,0,.035);
       --grid-minor:rgba(0,0,0,.014);
-      --line-soft:rgba(0,0,0,.08);
 
       --c1:#7389a8;
       --c2:#879f8a;
@@ -43,7 +41,7 @@
         linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
         linear-gradient(var(--grid-minor) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+        linear-gradient(180deg, #f7f7f4, #f2f1ed);
       background-size:56px 56px,56px 56px,14px 14px,14px 14px,auto;
       overflow-x:hidden;
     }
@@ -251,7 +249,7 @@
     }
 
     .process-shell{
-      padding:26px 18px;
+      padding:26px 22px;
       border:1px solid var(--border);
       border-radius:34px;
       background:rgba(255,255,255,.70);
@@ -265,75 +263,89 @@
       letter-spacing:.16em;
       color:#777;
       font-weight:800;
-      margin:0 0 14px 10px;
+      margin:0 0 16px 4px;
     }
 
-    .process-scroll{
-      overflow-x:auto;
-      padding-bottom:4px;
-    }
-
-    .process{
-      min-width:1120px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .step{
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:14px;
       position:relative;
-      width:200px;
-      height:200px;
-      flex:0 0 200px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:transform .22s ease;
     }
 
-    .step:hover{
-      transform:translateY(-4px);
-    }
-
-    .step svg{
+    .steps-grid::before{
+      content:"";
       position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      filter:drop-shadow(0 8px 16px rgba(0,0,0,.05));
-      transition:.22s ease;
+      left:8%;
+      right:8%;
+      top:34px;
+      height:2px;
+      background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));
+      opacity:.35;
+      z-index:0;
     }
 
-    .step.active svg{
-      transform:scale(1.05);
-      filter:drop-shadow(0 12px 22px rgba(0,0,0,.08));
-    }
-
-    .step .label{
+    .step-card{
       position:relative;
-      z-index:2;
-      width:138px;
-      text-align:center;
-      font-size:clamp(1.55rem,2vw,1.95rem);
-      line-height:1;
+      z-index:1;
+      border:1px solid var(--border);
+      border-radius:24px;
+      background:rgba(255,255,255,.9);
+      padding:18px 16px 16px;
+      cursor:pointer;
+      transition:.2s ease;
+      min-height:150px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .step-card:hover{
+      transform:translateY(-3px);
+    }
+
+    .step-card.active{
+      background:#fff;
+      box-shadow:0 14px 28px rgba(0,0,0,.08);
+      transform:translateY(-2px);
+    }
+
+    .step-dot{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:4px solid white;
+      box-shadow:0 0 0 1px rgba(0,0,0,.08);
+      margin:0 auto 18px;
+    }
+
+    .step-card:nth-child(1) .step-dot{background:var(--c1)}
+    .step-card:nth-child(2) .step-dot{background:var(--c2)}
+    .step-card:nth-child(3) .step-dot{background:var(--c3)}
+    .step-card:nth-child(4) .step-dot{background:var(--c4)}
+    .step-card:nth-child(5) .step-dot{background:var(--c5)}
+
+    .step-num{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#7a7a7a;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .step-title{
+      font-size:1.25rem;
+      line-height:1.02;
       font-weight:900;
-      letter-spacing:-.05em;
+      letter-spacing:-.04em;
       color:#202020;
+      margin-bottom:8px;
     }
 
-    .step .sub{
-      display:block;
-      margin-top:10px;
-      font-size:.9rem;
-      color:#646464;
-      font-weight:700;
-      letter-spacing:.01em;
-    }
-
-    .connector{
-      width:22px;
-      flex:0 0 22px;
+    .step-sub{
+      font-size:.92rem;
+      line-height:1.5;
+      color:#666;
+      font-weight:600;
     }
 
     .sections{
@@ -554,6 +566,15 @@
       transform:translateY(0);
     }
 
+    @media (max-width: 1100px){
+      .steps-grid{
+        grid-template-columns:1fr;
+      }
+      .steps-grid::before{
+        display:none;
+      }
+    }
+
     @media (max-width: 980px){
       .hero-top{
         grid-template-columns:1fr;
@@ -622,56 +643,41 @@
 
     <section class="process-wrap reveal">
       <div class="process-shell">
-        <p class="shell-label">Exhibition sequence</p>
-        <div class="process-scroll">
-          <div class="process">
-            <div class="step active" data-target="welcome">
-              <svg viewBox="0 0 220 220" aria-hidden="true">
-                <circle cx="110" cy="110" r="74" fill="none" stroke="var(--c1)" stroke-width="24" stroke-linecap="square" stroke-dasharray="402 84" transform="rotate(42 110 110)"/>
-                <polygon points="166,72 203,88 176,117" fill="var(--c1)"></polygon>
-              </svg>
-              <div class="label">Welcome<span class="sub">opening + arrival</span></div>
-            </div>
+        <p class="shell-label">Design process sequence</p>
+        <div class="steps-grid" id="stepGrid">
+          <div class="step-card active" data-target="welcome">
+            <div class="step-dot"></div>
+            <div class="step-num">Step 01</div>
+            <div class="step-title">Welcome</div>
+            <div class="step-sub">Opening the experience and setting the tone.</div>
+          </div>
 
-            <div class="connector"></div>
+          <div class="step-card" data-target="overview">
+            <div class="step-dot"></div>
+            <div class="step-num">Step 02</div>
+            <div class="step-title">Overview</div>
+            <div class="step-sub">Guiding guests through the flow of the event.</div>
+          </div>
 
-            <div class="step" data-target="overview">
-              <svg viewBox="0 0 220 220" aria-hidden="true">
-                <circle cx="110" cy="110" r="74" fill="none" stroke="var(--c2)" stroke-width="24" stroke-linecap="square" stroke-dasharray="402 84" transform="rotate(222 110 110)"/>
-                <polygon points="57,160 22,136 63,121" fill="var(--c2)"></polygon>
-              </svg>
-              <div class="label">Overview<span class="sub">evening plan</span></div>
-            </div>
+          <div class="step-card" data-target="seniors">
+            <div class="step-dot"></div>
+            <div class="step-num">Step 03</div>
+            <div class="step-title">Seniors</div>
+            <div class="step-sub">Recognizing the graduating class and their impact.</div>
+          </div>
 
-            <div class="connector"></div>
+          <div class="step-card" data-target="next-event">
+            <div class="step-dot"></div>
+            <div class="step-num">Step 04</div>
+            <div class="step-title">Next Event</div>
+            <div class="step-sub">Connecting this moment to what comes next.</div>
+          </div>
 
-            <div class="step" data-target="seniors">
-              <svg viewBox="0 0 220 220" aria-hidden="true">
-                <circle cx="110" cy="110" r="74" fill="none" stroke="var(--c3)" stroke-width="24" stroke-linecap="square" stroke-dasharray="402 84" transform="rotate(42 110 110)"/>
-                <polygon points="166,72 203,88 176,117" fill="var(--c3)"></polygon>
-              </svg>
-              <div class="label">Seniors<span class="sub">recognition</span></div>
-            </div>
-
-            <div class="connector"></div>
-
-            <div class="step" data-target="next-event">
-              <svg viewBox="0 0 220 220" aria-hidden="true">
-                <circle cx="110" cy="110" r="74" fill="none" stroke="var(--c4)" stroke-width="24" stroke-linecap="square" stroke-dasharray="402 84" transform="rotate(222 110 110)"/>
-                <polygon points="57,160 22,136 63,121" fill="var(--c4)"></polygon>
-              </svg>
-              <div class="label">Next<br>Event<span class="sub">what’s next</span></div>
-            </div>
-
-            <div class="connector"></div>
-
-            <div class="step" data-target="about-itd">
-              <svg viewBox="0 0 220 220" aria-hidden="true">
-                <circle cx="110" cy="110" r="74" fill="none" stroke="var(--c5)" stroke-width="24" stroke-linecap="square" stroke-dasharray="402 84" transform="rotate(42 110 110)"/>
-                <polygon points="166,72 203,88 176,117" fill="var(--c5)"></polygon>
-              </svg>
-              <div class="label">About ITD<span class="sub">program identity</span></div>
-            </div>
+          <div class="step-card" data-target="about-itd">
+            <div class="step-dot"></div>
+            <div class="step-num">Step 05</div>
+            <div class="step-title">About ITD</div>
+            <div class="step-sub">Framing the program behind the experience.</div>
           </div>
         </div>
       </div>
@@ -778,19 +784,19 @@
     </section>
 
     <div class="footer-note">
-      Click the process steps or scroll through the exhibition.
+      Click the steps or scroll through the exhibition.
     </div>
   </div>
 
   <script>
-    const steps = document.querySelectorAll('.step');
+    const stepCards = document.querySelectorAll('.step-card');
     const panels = document.querySelectorAll('.panel');
     const reveals = document.querySelectorAll('.reveal');
     const jumpLinks = document.querySelectorAll('#jumpNav a');
 
     function activateStepById(id){
-      steps.forEach(step => {
-        step.classList.toggle('active', step.dataset.target === id);
+      stepCards.forEach(card => {
+        card.classList.toggle('active', card.dataset.target === id);
       });
 
       jumpLinks.forEach(link => {
@@ -803,9 +809,9 @@
       });
     }
 
-    steps.forEach(step => {
-      step.addEventListener('click', () => {
-        const targetId = step.dataset.target;
+    stepCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const targetId = card.dataset.target;
         const target = document.getElementById(targetId);
         if(target){
           activateStepById(targetId);
