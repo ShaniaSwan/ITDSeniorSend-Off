@@ -6,35 +6,40 @@
   <title>ITD Senior Send-Off</title>
   <style>
     :root{
-      --paper:#f7f5f0;
-      --paper-2:#f3f1eb;
-      --ink:#161616;
-      --muted:#666;
-      --grid1:rgba(0,0,0,.05);
-      --grid2:rgba(0,0,0,.022);
-      --blue:#7ea6e8;
-      --green:#74c47d;
-      --gold:#ebb34d;
-      --orange:#f07c34;
-      --red:#ba4242;
-      --card:rgba(255,255,255,.78);
-      --border:rgba(0,0,0,.08);
-      --shadow:0 18px 50px rgba(0,0,0,.08);
+      --paper:#f6f4ef;
+      --paper-2:#f1eee8;
+      --ink:#171717;
+      --muted:#5f5f5f;
+      --grid-1:rgba(0,0,0,.05);
+      --grid-2:rgba(0,0,0,.022);
+      --line:rgba(0,0,0,.10);
+
+      /* softer, more unified palette */
+      --blue:#89aee8;
+      --green:#84c98c;
+      --gold:#e7b85d;
+      --orange:#ef8746;
+      --red:#b45151;
+
+      --panel:rgba(255,255,255,.42);
+      --panel-border:rgba(0,0,0,.08);
+      --shadow:0 18px 45px rgba(0,0,0,.06);
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      color:var(--ink);
       font-family: Inter, Arial, Helvetica, sans-serif;
+      color:var(--ink);
       background:
-        linear-gradient(var(--grid1) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid1) 1px, transparent 1px),
-        linear-gradient(var(--grid2) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid2) 1px, transparent 1px),
-        linear-gradient(180deg,var(--paper),var(--paper-2));
-      background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px, auto;
+        linear-gradient(var(--grid-1) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-1) 1px, transparent 1px),
+        linear-gradient(var(--grid-2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-2) 1px, transparent 1px),
+        linear-gradient(180deg, var(--paper), var(--paper-2));
+      background-size:48px 48px,48px 48px,12px 12px,12px 12px,auto;
       overflow-x:hidden;
     }
 
@@ -48,14 +53,14 @@
     .ruler-left{
       position:absolute;
       left:0; top:0; bottom:0;
-      width:44px;
+      width:46px;
+      opacity:.35;
       border-right:2px solid rgba(0,0,0,.08);
-      opacity:.4;
       background:
         repeating-linear-gradient(
           to bottom,
           transparent 0 15px,
-          rgba(0,0,0,.17) 15px 17px,
+          rgba(0,0,0,.16) 15px 17px,
           transparent 17px 31px,
           rgba(0,0,0,.08) 31px 32px,
           transparent 32px 44px
@@ -64,92 +69,92 @@
 
     .curve{
       position:absolute;
-      border:2px dashed rgba(0,0,0,.10);
-      border-radius:40px;
+      border:2px dashed rgba(0,0,0,.11);
+      border-radius:48px;
     }
-    .curve.one{width:300px;height:190px;left:-90px;top:110px;border-right:none;border-top:none}
-    .curve.two{width:360px;height:220px;right:-70px;top:30px;border-left:none;border-bottom:none}
+    .curve.one{width:290px;height:180px;left:-70px;top:120px;border-right:none;border-top:none}
+    .curve.two{width:360px;height:210px;right:-80px;top:30px;border-left:none;border-bottom:none}
     .curve.three{width:280px;height:180px;left:-35px;bottom:95px;border-right:none;border-top:none}
-    .curve.four{width:360px;height:200px;right:80px;bottom:35px;border-left:none;border-top:none}
+    .curve.four{width:340px;height:180px;right:85px;bottom:35px;border-left:none;border-top:none}
 
     .arrow-note{
       position:absolute;
-      color:rgba(0,0,0,.28);
+      color:rgba(0,0,0,.24);
       font-size:20px;
       font-style:italic;
       letter-spacing:.01em;
     }
-    .arrow-note.a{left:215px;top:245px}
-    .arrow-note.b{right:175px;top:170px}
-    .arrow-note.c{right:145px;bottom:125px}
+    .arrow-note.a{left:205px;top:255px}
+    .arrow-note.b{right:180px;top:165px}
+    .arrow-note.c{right:150px;bottom:120px}
 
-    .sketch-window{
+    .sketch-box{
       position:absolute;
-      border:3px solid rgba(0,0,0,.14);
+      border:3px solid rgba(0,0,0,.12);
       border-radius:8px;
-      opacity:.4;
+      opacity:.28;
       background:rgba(255,255,255,.08);
     }
-    .sketch-window::before,
-    .sketch-window::after{
+    .sketch-box::before,
+    .sketch-box::after{
       content:"";
       position:absolute;
-      left:18px;
-      right:18px;
+      left:18px; right:18px;
       height:8px;
       border-radius:999px;
       background:rgba(0,0,0,.10);
     }
-    .sketch-window::before{top:18px}
-    .sketch-window::after{top:40px}
-    .sketch-window .box{
+    .sketch-box::before{top:18px}
+    .sketch-box::after{top:38px}
+    .sketch-box .mini{
       position:absolute;
-      width:58px; height:42px;
-      bottom:18px;
-      border:2px solid rgba(0,0,0,.12);
+      width:54px;height:40px;
+      bottom:16px;
+      border:2px solid rgba(0,0,0,.11);
     }
-    .sketch-window .box:nth-child(1){left:18px}
-    .sketch-window .box:nth-child(2){left:89px}
-    .sketch-window .box:nth-child(3){left:160px}
+    .sketch-box .mini:nth-child(1){left:18px}
+    .sketch-box .mini:nth-child(2){left:84px}
+    .sketch-box .mini:nth-child(3){left:150px}
 
-    .window-one{width:235px;height:170px;left:72px;top:100px}
-    .window-two{width:232px;height:175px;right:72px;top:205px}
-    .window-three{width:250px;height:155px;right:92px;bottom:30px}
+    .box-one{width:224px;height:162px;left:70px;top:95px}
+    .box-two{width:228px;height:170px;right:70px;top:220px}
+    .box-three{width:238px;height:150px;right:95px;bottom:40px}
 
-    .content{position:relative; z-index:1;}
+    .content{
+      position:relative;
+      z-index:1;
+    }
 
     .hero{
       max-width:1320px;
       margin:0 auto;
-      padding:88px 24px 26px;
-      position:relative;
+      padding:88px 24px 24px;
     }
 
     .hero-badge{
       display:inline-block;
       padding:10px 16px;
       border-radius:999px;
-      background:rgba(255,255,255,.82);
       border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.72);
       font-size:13px;
       font-weight:800;
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:#555;
-      box-shadow:0 10px 24px rgba(0,0,0,.05);
+      color:#575757;
       margin-bottom:18px;
     }
 
     h1{
       margin:0;
-      font-size:clamp(3rem, 7vw, 6.25rem);
-      line-height:.93;
-      letter-spacing:-.06em;
       max-width:980px;
+      font-size:clamp(3rem, 7vw, 6.2rem);
+      line-height:.93;
+      letter-spacing:-.065em;
     }
 
-    .gradient-text{
-      background:linear-gradient(90deg,#111 0%, #222 35%, #4b4b4b 100%);
+    .hero-title{
+      background:linear-gradient(90deg,#121212 0%, #232323 60%, #444 100%);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -159,17 +164,16 @@
       margin:14px 0 8px;
       font-size:clamp(1.15rem,2vw,1.55rem);
       font-weight:800;
+      color:#404040;
       letter-spacing:-.03em;
-      color:#3b3b3b;
     }
 
     .hero-sub{
       max-width:860px;
-      margin:12px 0 30px;
-      font-size:clamp(1.05rem,2.1vw,1.38rem);
-      line-height:1.65;
-      color:#4c4c4c;
-      font-weight:500;
+      margin:12px 0 28px;
+      font-size:clamp(1.05rem,2vw,1.34rem);
+      line-height:1.68;
+      color:#505050;
     }
 
     .jump{
@@ -180,29 +184,24 @@
     .jump a{
       text-decoration:none;
       color:#181818;
+      font-weight:800;
       padding:13px 18px;
       border-radius:999px;
       border:1px solid rgba(0,0,0,.08);
-      background:rgba(255,255,255,.86);
-      font-weight:800;
-      font-size:1rem;
-      box-shadow:0 8px 24px rgba(0,0,0,.04);
+      background:rgba(255,255,255,.80);
       transition:.2s ease;
     }
-    .jump a:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(0,0,0,.08);
-    }
+    .jump a:hover{transform:translateY(-2px)}
 
     .process-wrap{
       max-width:1320px;
-      margin:10px auto 8px;
-      padding:8px 24px 34px;
+      margin:8px auto 26px;
+      padding:0 24px;
     }
 
     .process-scroll{
       overflow-x:auto;
-      padding-bottom:8px;
+      padding-bottom:10px;
     }
 
     .process{
@@ -210,8 +209,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:0;
-      padding:12px 0 0;
+      padding:8px 0 0;
     }
 
     .step{
@@ -223,34 +221,38 @@
       align-items:center;
       justify-content:center;
       cursor:pointer;
-      transition:transform .25s ease;
+      transition:transform .22s ease;
     }
-    .step:hover{transform:translateY(-6px)}
+    .step:hover{transform:translateY(-5px)}
+
     .step svg{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
-      filter:drop-shadow(0 10px 18px rgba(0,0,0,.08));
+      filter:drop-shadow(0 10px 20px rgba(0,0,0,.08));
     }
+
     .step .label{
       position:relative;
       z-index:2;
+      width:148px;
       text-align:center;
-      width:150px;
-      font-weight:900;
+      font-size:clamp(1.75rem,2vw,2.2rem);
       line-height:.98;
-      letter-spacing:-.05em;
-      font-size:clamp(1.7rem,2vw,2.2rem);
+      font-weight:900;
+      letter-spacing:-.055em;
     }
+
     .step .sub{
       display:block;
       margin-top:10px;
       font-size:.96rem;
-      color:#545454;
+      color:#585858;
       font-weight:700;
       letter-spacing:.01em;
     }
+
     .connector{
       width:34px;
       flex:0 0 34px;
@@ -259,34 +261,53 @@
     .sections{
       max-width:1320px;
       margin:0 auto;
-      padding:0 24px 95px;
+      padding:6px 24px 90px;
       display:grid;
-      gap:22px;
+      gap:18px;
     }
 
     .panel{
       position:relative;
       display:grid;
-      grid-template-columns:190px 1fr;
+      grid-template-columns:170px 1fr;
       gap:24px;
-      padding:28px;
-      border-radius:32px;
-      border:1px solid var(--border);
-      background:var(--card);
+      padding:26px 28px;
+      border:1px solid var(--panel-border);
+      border-radius:30px;
+      background:var(--panel);
+      backdrop-filter: blur(8px);
       box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
-      scroll-margin-top:20px;
+      scroll-margin-top:24px;
+      overflow:hidden;
     }
+
+    .panel::after{
+      content:"";
+      position:absolute;
+      right:24px;
+      top:50%;
+      width:180px;
+      height:180px;
+      transform:translateY(-50%);
+      border-radius:50%;
+      opacity:.10;
+      pointer-events:none;
+    }
+
+    .welcome::after{border:16px solid var(--blue)}
+    .overview::after{border:16px solid var(--green)}
+    .seniors::after{border:16px solid var(--gold)}
+    .next::after{border:16px solid var(--orange)}
+    .about::after{border:16px solid var(--red)}
 
     .accent-bar{
       position:absolute;
       left:0;
-      top:28px;
-      bottom:28px;
+      top:24px;
+      bottom:24px;
       width:10px;
       border-radius:999px;
     }
-
     .welcome .accent-bar{background:var(--blue)}
     .overview .accent-bar{background:var(--green)}
     .seniors .accent-bar{background:var(--gold)}
@@ -294,158 +315,144 @@
     .about .accent-bar{background:var(--red)}
 
     .panel-left{
+      padding-right:18px;
       border-right:1px dashed rgba(0,0,0,.10);
-      padding-right:24px;
+      position:relative;
+      z-index:1;
     }
 
     .panel-num{
       font-size:12px;
-      font-weight:800;
-      letter-spacing:.16em;
       text-transform:uppercase;
-      color:#6b6b6b;
+      letter-spacing:.16em;
+      color:#6f6f6f;
+      font-weight:800;
     }
 
     .panel-title{
       margin:8px 0 0;
-      font-size:clamp(1.9rem,3vw,2.7rem);
-      line-height:.94;
-      letter-spacing:-.05em;
+      font-size:clamp(1.85rem,3vw,2.5rem);
+      line-height:.95;
       font-weight:900;
+      letter-spacing:-.05em;
     }
-
-    .chip{
-      display:inline-block;
-      margin-top:12px;
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:.92rem;
-      font-weight:800;
-      border:1px solid rgba(0,0,0,.07);
-      background:white;
-    }
-
-    .welcome .chip{background:rgba(126,166,232,.12)}
-    .overview .chip{background:rgba(116,196,125,.13)}
-    .seniors .chip{background:rgba(235,179,77,.16)}
-    .next .chip{background:rgba(240,124,52,.16)}
-    .about .chip{background:rgba(186,66,66,.13)}
 
     .panel-right{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:24px;
-      align-items:start;
+      position:relative;
+      z-index:1;
+      max-width:760px;
     }
 
-    .text-block p{
+    .lead{
       margin:0 0 14px;
+      font-size:1.12rem;
       line-height:1.72;
-      color:#4f4f4f;
-      font-size:1rem;
-    }
-
-    .list-block{
-      margin-top:10px;
-      padding:18px 20px;
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,.07);
-      background:rgba(255,255,255,.85);
-      box-shadow:0 8px 24px rgba(0,0,0,.03);
-    }
-
-    .list-block strong{
-      display:block;
-      margin-bottom:8px;
-      font-size:1rem;
-      letter-spacing:-.01em;
-    }
-
-    .list-block p{
-      margin:0;
-      line-height:1.7;
-      color:#515151;
-    }
-
-    .mini-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-
-    .mini-card{
-      min-height:116px;
-      padding:16px;
-      border-radius:20px;
-      border:1px solid rgba(0,0,0,.07);
-      background:rgba(255,255,255,.85);
-    }
-
-    .mini-card h4{
-      margin:0 0 8px;
-      font-size:1rem;
-      letter-spacing:-.02em;
-    }
-
-    .mini-card p{
-      margin:0;
-      color:#545454;
-      line-height:1.58;
-      font-size:.96rem;
-    }
-
-    .senior-list{
-      columns:2;
-      gap:18px;
-      margin:0;
-      padding-left:18px;
-    }
-
-    .senior-list li{
-      margin:0 0 10px;
-      line-height:1.45;
-      color:#434343;
+      color:#3f3f3f;
       font-weight:600;
     }
 
-    .itd-link{
+    .meta{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .meta-item{
+      padding:11px 15px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.72);
+      font-size:.95rem;
+      font-weight:800;
+      color:#2b2b2b;
+    }
+
+    .overview-line{
+      margin-top:16px;
+      font-size:clamp(1.2rem,2vw,1.5rem);
+      line-height:1.55;
+      font-weight:800;
+      letter-spacing:-.03em;
+      color:#2e2e2e;
+    }
+
+    .names{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(200px,1fr));
+      gap:10px 18px;
+      max-width:720px;
+    }
+
+    .name{
+      padding:10px 0;
+      border-bottom:1px dashed rgba(0,0,0,.12);
+      font-weight:700;
+      color:#333;
+    }
+
+    .expo-block{
+      margin-top:18px;
+      padding:0;
+    }
+
+    .expo-title{
+      font-size:clamp(1.45rem,2.3vw,1.8rem);
+      font-weight:900;
+      letter-spacing:-.04em;
+      margin:0 0 8px;
+    }
+
+    .expo-info{
+      margin:0;
+      line-height:1.75;
+      font-size:1.06rem;
+      color:#404040;
+      font-weight:600;
+    }
+
+    .about-link{
       display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:12px;
+      margin-top:18px;
       text-decoration:none;
-      color:#111;
+      color:#171717;
       font-weight:800;
       padding:12px 16px;
       border-radius:999px;
+      background:rgba(255,255,255,.84);
       border:1px solid rgba(0,0,0,.08);
-      background:white;
     }
 
     .footer-note{
       max-width:1320px;
       margin:0 auto;
-      padding:0 24px 64px;
-      color:#6a6a6a;
-      font-size:.96rem;
+      padding:0 24px 60px;
+      color:#6b6b6b;
+      font-size:.95rem;
     }
 
     @media (max-width: 980px){
-      .panel{grid-template-columns:1fr}
+      .panel{
+        grid-template-columns:1fr;
+      }
       .panel-left{
         border-right:none;
         border-bottom:1px dashed rgba(0,0,0,.10);
         padding-right:0;
-        padding-bottom:18px;
+        padding-bottom:16px;
       }
-      .panel-right{grid-template-columns:1fr}
+      .panel::after{
+        right:-20px;
+        width:130px;
+        height:130px;
+      }
     }
 
     @media (max-width: 760px){
-      .window-one,.window-two,.window-three,.arrow-note{display:none}
+      .sketch-box,.arrow-note{display:none}
       .hero{padding-top:76px}
-      .mini-grid{grid-template-columns:1fr}
-      .senior-list{columns:1}
+      .names{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -458,27 +465,27 @@
     <div class="curve four"></div>
     <div class="arrow-note a">story flow</div>
     <div class="arrow-note b">spacing: 16px</div>
-    <div class="arrow-note c">image container</div>
+    <div class="arrow-note c">prototype board</div>
 
-    <div class="sketch-window window-one">
-      <div class="box"></div><div class="box"></div><div class="box"></div>
+    <div class="sketch-box box-one">
+      <div class="mini"></div><div class="mini"></div><div class="mini"></div>
     </div>
-    <div class="sketch-window window-two">
-      <div class="box"></div><div class="box"></div><div class="box"></div>
+    <div class="sketch-box box-two">
+      <div class="mini"></div><div class="mini"></div><div class="mini"></div>
     </div>
-    <div class="sketch-window window-three">
-      <div class="box"></div><div class="box"></div><div class="box"></div>
+    <div class="sketch-box box-three">
+      <div class="mini"></div><div class="mini"></div><div class="mini"></div>
     </div>
   </div>
 
   <div class="content">
     <section class="hero">
       <div class="hero-badge">ITD Senior Send-Off 2026</div>
-      <h1 class="gradient-text">ITD Senior Send-Off</h1>
+      <h1 class="hero-title">ITD Senior Send-Off</h1>
       <div class="from-wireframe">From wireframe to reality.</div>
       <p class="hero-sub">
         A celebration of innovation, creativity, and the graduating seniors who helped shape this semester.
-        Explore the evening through a clean, interactive experience featuring the welcome, overview, seniors, next event, and about ITD.
+        Explore the evening through a clean interactive flow: welcome, overview, seniors, next event, and about ITD.
       </p>
 
       <div class="jump">
@@ -550,30 +557,16 @@
         <div class="panel-left">
           <div class="panel-num">Step 01</div>
           <h2 class="panel-title">Welcome</h2>
-          <div class="chip">Opening the experience</div>
         </div>
-
         <div class="panel-right">
-          <div class="text-block">
-            <p>
-              Welcome to Senior Send-Off, where we recognize the seniors graduating and a wonderful semester.
-              Thank you all for being here.
-            </p>
-            <div class="list-block">
-              <strong>Event details</strong>
-              <p>April 10th, 2026 | 1–3 PM | Lowe Art Museum</p>
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>Purpose</h4>
-              <p>Celebrate graduating seniors and reflect on a semester of design, innovation, and growth.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Tone</h4>
-              <p>Warm, polished, and creative — a send-off that feels thoughtful and memorable.</p>
-            </div>
+          <p class="lead">
+            Welcome to Senior Send-Off, where we recognize the seniors graduating and a wonderful semester.
+            Thank you all for being here.
+          </p>
+          <div class="meta">
+            <div class="meta-item">April 10th, 2026</div>
+            <div class="meta-item">1–3 PM</div>
+            <div class="meta-item">Lowe Art Museum</div>
           </div>
         </div>
       </article>
@@ -583,29 +576,13 @@
         <div class="panel-left">
           <div class="panel-num">Step 02</div>
           <h2 class="panel-title">Overview</h2>
-          <div class="chip">Evening structure</div>
         </div>
-
         <div class="panel-right">
-          <div class="text-block">
-            <p>
-              The event is organized to guide guests through the celebration in a simple, welcoming flow.
-            </p>
-            <div class="list-block">
-              <strong>Overview | Welcome | Lunch | Program | Closing</strong>
-              <p>This section acts like the evening roadmap so guests can quickly understand the flow of the event.</p>
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>Why it matters</h4>
-              <p>A strong overview helps the event feel intentional, clear, and professionally designed.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Best use</h4>
-              <p>Keep it clean, easy to scan, and aligned with the visual rhythm of the pamphlet.</p>
-            </div>
+          <p class="lead">
+            The event is organized to guide guests through the celebration in a simple, intentional flow.
+          </p>
+          <div class="overview-line">
+            Overview | Welcome | Lunch | Program | Closing
           </div>
         </div>
       </article>
@@ -615,40 +592,22 @@
         <div class="panel-left">
           <div class="panel-num">Step 03</div>
           <h2 class="panel-title">Seniors</h2>
-          <div class="chip">Recognizing the graduating class</div>
         </div>
-
         <div class="panel-right">
-          <div class="text-block">
-            <p>
-              This section honors the seniors whose creativity, work, and dedication shaped the ITD community.
-            </p>
-            <div class="list-block">
-              <strong>Graduating seniors</strong>
-              <ul class="senior-list">
-                <li>James Agger</li>
-                <li>Sean Andrews</li>
-                <li>Neal Daniel</li>
-                <li>Nikiel Karna</li>
-                <li>Charles McDonough</li>
-                <li>Alex Miller</li>
-                <li>Katelyn Pecoraro</li>
-                <li>Jake Riina</li>
-                <li>Anna Sheridan</li>
-                <li>Lyndsey Vigna</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>Optional upgrade</h4>
-              <p>Add portraits, projects, or post-grad plans later if you want this to feel more interactive.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Visual role</h4>
-              <p>This is the emotional center of the pamphlet and should feel celebratory and personal.</p>
-            </div>
+          <p class="lead">
+            Recognizing the graduating seniors whose creativity, work, and dedication shaped the ITD community.
+          </p>
+          <div class="names">
+            <div class="name">James Agger</div>
+            <div class="name">Sean Andrews</div>
+            <div class="name">Neal Daniel</div>
+            <div class="name">Nikiel Karna</div>
+            <div class="name">Charles McDonough</div>
+            <div class="name">Alex Miller</div>
+            <div class="name">Katelyn Pecoraro</div>
+            <div class="name">Jake Riina</div>
+            <div class="name">Anna Sheridan</div>
+            <div class="name">Lyndsey Vigna</div>
           </div>
         </div>
       </article>
@@ -658,29 +617,18 @@
         <div class="panel-left">
           <div class="panel-num">Step 04</div>
           <h2 class="panel-title">Next Event</h2>
-          <div class="chip">Continue the celebration</div>
         </div>
-
         <div class="panel-right">
-          <div class="text-block">
-            <p>
-              Keep the momentum going by pointing guests toward the next major ITD event.
+          <p class="lead">
+            Keep the momentum going by pointing guests toward the next major ITD event.
+          </p>
+          <div class="expo-block">
+            <h3 class="expo-title">Senior Expo 2026</h3>
+            <p class="expo-info">
+              Tuesday, April 28, 2026<br>
+              5:00 – 8:00 PM<br>
+              Shalala Student Center
             </p>
-            <div class="list-block">
-              <strong>Senior Expo 2026</strong>
-              <p>Tuesday, April 28, 2026<br>5:00 – 8:00 PM<br>Shalala Student Center</p>
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>Why include this</h4>
-              <p>It creates a natural bridge from celebration into the next opportunity to engage with senior work.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Future add-on</h4>
-              <p>You can place a button or QR code here later for directions, RSVP, or more event details.</p>
-            </div>
           </div>
         </div>
       </article>
@@ -690,30 +638,15 @@
         <div class="panel-left">
           <div class="panel-num">Step 05</div>
           <h2 class="panel-title">About ITD</h2>
-          <div class="chip">Program identity</div>
         </div>
-
         <div class="panel-right">
-          <div class="text-block">
-            <p>
-              The B.S. in Innovation, Technology, and Design is a multidisciplinary, university-wide program at the University of Miami that prepares students for careers at the intersection of design, technology, and innovation.
-            </p>
-            <p>
-              ITD emphasizes hands-on, cross-disciplinary learning and helps students build future-proof skills through creative problem-solving, collaboration, and real-world making.
-            </p>
-            <a class="itd-link" href="https://itd.miami.edu/" target="_blank">Visit the ITD website</a>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>What makes it distinct</h4>
-              <p>ITD brings together students and faculty across disciplines through cutting-edge learning and learn-by-doing experiences.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Big takeaway</h4>
-              <p>It is designed to help students create, adapt, and lead in rapidly changing creative and technical fields.</p>
-            </div>
-          </div>
+          <p class="lead">
+            The B.S. in Innovation, Technology, and Design is a multidisciplinary, university-wide program at the University of Miami that prepares students for careers at the intersection of design, technology, and innovation.
+          </p>
+          <p class="lead" style="font-weight:500;">
+            ITD emphasizes hands-on, cross-disciplinary learning and helps students build future-proof skills through creative problem-solving, collaboration, and real-world making.
+          </p>
+          <a class="about-link" href="https://itd.miami.edu/" target="_blank">Visit the ITD website</a>
         </div>
       </article>
     </section>
